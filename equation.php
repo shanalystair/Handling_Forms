@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $b = $_POST["b"];
     $c = $_POST["c"];
 
-    // Compute discriminant
+    
     $result = ($b * $b) - (4 * $a * $c);
 }
 ?>
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: "Poppins", sans-serif;
-            background: #ffffff; /* White background */
+            background: #ffffff; 
             min-height: 100vh;
             margin: 0;
             display: flex;
@@ -50,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .formula-box {
             font-size: 33px;
             text-align: center;
-            background: #ffd3d3; /* light red */
+            background: #ffd3d3; 
             padding: 25px;
             border-radius: 18px;
-            border: 2px solid #d13a3a; /* darker red */
+            border: 2px solid #d13a3a; 
             margin-bottom: 35px;
             font-weight: 600;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
@@ -168,3 +168,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
