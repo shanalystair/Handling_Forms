@@ -1,59 +1,57 @@
 <?php
 session_start();
 
-// Initialize message variable
+
 $message = '';
 
-// Define common styles for messages
+
 $success_style = "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;";
 $error_style = "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;";
 $warning_style = "background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;";
 
-// Handle login form submission
+
 if (isset($_POST['loginBtn'])) {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Basic Input Sanitization
+    
     $username = htmlspecialchars(trim($username));
 
-    // Case 1: User already logged in (Check if a session is active)
+    
     if (isset($_SESSION['username'])) {
-        // If the submitted username is different from the logged-in user
+        
         if ($_SESSION['username'] !== $username) {
-            // New login attempt while another user is logged in
+            
             $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$error_style}'>
                             {$_SESSION['username']} is already logged in. Wait for him to logout first.
                         </div>";
         } else {
-            // Attempting to log in again with the current session user's name
+            
             $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$warning_style}'>
                             User {$_SESSION['username']} is already logged in. Please logout first if you wish to re-authenticate.
                         </div>";
         }
 
     } else {
-        // Case 2: Attempting a fresh login (No session active)
+       
         
         if (empty($username) || empty($password)) {
              $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$error_style}'>
                             Username and password cannot be empty.
                         </div>";
         } else {
-            // --- SIMULATED AUTHENTICATION ---
+            
             $_SESSION['username'] = $username;
-            // For DEMONSTRATION ONLY: Hashing is typically done when *registering* a user, 
-            // and the hash is stored in a database.
-            // We use this variable only for a placeholder, NOT for secure storage.
+          
             $simulated_hash = password_hash($password, PASSWORD_DEFAULT); 
 
-            $_SESSION['simulated_hash'] = $simulated_hash; // Temporarily store hash to display
+            $_SESSION['simulated_hash'] = $simulated_hash; 
 
             $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$success_style}'>
                             User {$username} logged in successfully!
                         </div>";
             
-            // Redirect to force a refresh and update session display
+            
             header("Location: " . $_SERVER['PHP_SELF']);
             exit;
         }
@@ -68,7 +66,7 @@ if (isset($_POST['loginBtn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Session Login</title>
     <style>
-        /* Base styles */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #e9ecef;
@@ -93,7 +91,7 @@ if (isset($_POST['loginBtn'])) {
             margin: 8px 0 15px 0;
             border: 1px solid #ced4da;
             border-radius: 4px;
-            box-sizing: border-box; /* Important for padding/width calculation */
+            box-sizing: border-box; 
         }
         input[type="submit"] {
             width: 100%;
@@ -137,7 +135,7 @@ if (isset($_POST['loginBtn'])) {
             word-wrap: break-word;
         }
         .status-hash {
-            word-wrap: break-word; /* Allows long hashes to wrap */
+            word-wrap: break-word; 
             font-family: monospace;
             font-size: 0.85em;
             color: #495057;
@@ -151,7 +149,7 @@ if (isset($_POST['loginBtn'])) {
 <h2>User Login</h2>
 
 <?php
-// Display message if set
+
 if (isset($message) && $message) {
     echo $message;
 }
@@ -168,7 +166,7 @@ if (isset($message) && $message) {
 </form>
 
 <?php
-// Show status and logout button ONLY IF a user is logged in
+
 if (isset($_SESSION['username'])):
 ?>
 
@@ -180,7 +178,7 @@ if (isset($_SESSION['username'])):
     <p>Simulated Hashed Password:</p>
     <p class="status-hash">
         <?php
-        // FIX: Check if the session variable is set before trying to access it
+        
         echo htmlspecialchars($_SESSION['simulated_hash'] ?? 'Hash not stored in session on this request.');
         ?>
     </p>
@@ -196,4 +194,5 @@ endif;
 
 </div>
 </body>
+
 </html>
