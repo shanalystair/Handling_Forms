@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Define common styles for messages
+
 $success_style = "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;";
 $error_style = "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;";
 $warning_style = "background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba;";
 
-// Hardcoded hash for consistent display (AS REQUESTED, but DO NOT store real hash in session/display)
+
 $simulated_hash = '$2y$10$x.Xz4zL6D8H3vN9yT2tQJ.1M2P3S4R5Q6W7E8R9T0Y1U2I3O4P5';
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ $simulated_hash = '$2y$10$x.Xz4zL6D8H3vN9yT2tQJ.1M2P3S4R5Q6W7E8R9T0Y1U2I3O4P5';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Session Status</title>
     <style>
-        /* Base styles */
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #e9ecef;
@@ -100,16 +100,14 @@ $simulated_hash = '$2y$10$x.Xz4zL6D8H3vN9yT2tQJ.1M2P3S4R5Q6W7E8R9T0Y1U2I3O4P5';
 
     <?php
     if (isset($_SESSION['username'])) {
-        // --- LOGGED IN STATE ---
-
-        // Display conditional messages
+       
         if (isset($_SESSION['just_logged_in']) && $_SESSION['just_logged_in'] === true) {
             echo "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$success_style}'>
                     User {$_SESSION['username']} logged in successfully!
                   </div>";
             unset($_SESSION['just_logged_in']);
         } else {
-            // Note: This message's wording is from your original code, even though it's misleading
+            
             echo "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$warning_style}'>
                     You are currently logged in as {$_SESSION['username']}.
                   </div>";
@@ -125,7 +123,7 @@ $simulated_hash = '$2y$10$x.Xz4zL6D8H3vN9yT2tQJ.1M2P3S4R5Q6W7E8R9T0Y1U2I3O4P5';
             <p class="status-hash"><?= htmlspecialchars($simulated_hash) ?></p>
         </div>
 
-        <!-- Logout Button -->
+        
         <form action="logout.php" method="POST" style="margin-top: 20px;">
             <input type="submit" name="logoutBtn" value="Logout" class="logout-btn">
         </form>
@@ -150,4 +148,5 @@ $simulated_hash = '$2y$10$x.Xz4zL6D8H3vN9yT2tQJ.1M2P3S4R5Q6W7E8R9T0Y1U2I3O4P5';
 
 </div>
 </body>
+
 </html>
