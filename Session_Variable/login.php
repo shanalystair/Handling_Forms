@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-
 $message = '';
-
 
 $success_style = "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;";
 $error_style = "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;";
@@ -14,10 +12,8 @@ if (isset($_POST['loginBtn'])) {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    
     $username = htmlspecialchars(trim($username));
 
-    
     if (isset($_SESSION['username'])) {
         
         if ($_SESSION['username'] !== $username) {
@@ -34,7 +30,6 @@ if (isset($_POST['loginBtn'])) {
 
     } else {
        
-        
         if (empty($username) || empty($password)) {
              $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$error_style}'>
                             Username and password cannot be empty.
@@ -49,8 +44,7 @@ if (isset($_POST['loginBtn'])) {
 
             $message = "<div style='padding:10px; border-radius:4px; margin-bottom:15px; {$success_style}'>
                             User {$username} logged in successfully!
-                        </div>";
-            
+                        </div>";   
             
             header("Location: " . $_SERVER['PHP_SELF']);
             exit;
@@ -196,3 +190,4 @@ endif;
 </body>
 
 </html>
+
