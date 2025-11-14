@@ -3,31 +3,31 @@
 <head>
     <title>Gourmet Grub Order System</title>
     <style>
-        /* General Reset and Font */
+       
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font */
-            background-color: #f4f4f9; /* Light, neutral background */
-            color: #333; /* Dark text for contrast */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f4f9; 
+            color: #333; 
             margin: 0;
             padding: 30px;
-            font-size: 18px; /* Slightly smaller base font */
+            font-size: 18px; 
             line-height: 1.6;
         }
 
-        /* Container for content */
+       
         .container {
             max-width: 1000px;
-            margin: 0 auto; /* Center the content */
+            margin: 0 auto;
             background-color: #ffffff;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
         }
 
         /* Headings */
         h1 {
             text-align: center;
-            color: #d9534f; /* Primary brand color (Warm Red) */
+            color: #d9534f; 
             font-size: 36px;
             margin-bottom: 30px;
             border-bottom: 2px solid #d9534f;
@@ -40,12 +40,12 @@
             margin-top: 20px;
         }
 
-        /* Menu Table */
+        
         table {
             border-collapse: separate;
             border-spacing: 0;
-            width: 100%; /* Use full width in container */
-            max-width: 500px; /* Increased max width for more items */
+            width: 100%; 
+            max-width: 500px; 
             margin: 20px auto;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -59,17 +59,17 @@
         }
 
         th {
-            background-color: #d9534f; /* Table header using primary color */
+            background-color: #d9534f; 
             color: white;
             font-size: 20px;
             text-transform: uppercase;
         }
 
         tr:nth-child(even) {
-            background-color: #f8f8f8; /* Zebra striping */
+            background-color: #f8f8f8; 
         }
         
-        /* Form Styling */
+       
         form {
             max-width: 400px;
             margin: 40px auto;
@@ -97,7 +97,7 @@
         }
 
         button[type="submit"] {
-            background-color: #007bff; /* Success color (Green) */
+            background-color: #007bff; 
             color: white;
             padding: 12px 20px;
             border: none;
@@ -109,10 +109,10 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #0056b3; /* Darker green on hover */
+            background-color: #0056b3; 
         }
 
-        /* Receipt Box */
+        
         .receipt-box {
             border: 3px dashed #6c757d;
             padding: 30px;
@@ -142,10 +142,10 @@
         .receipt-box .change-text {
             font-size: 24px;
             font-weight: bold;
-            color: #0275d8; /* Highlight change with a striking blue */
+            color: #0275d8; 
         }
         
-        /* Error Message */
+        
         .error-message {
             color: #dc3545;
             text-align: center;
@@ -202,14 +202,14 @@
     </form>
 
 <?php
-// PHP logic to process the form and display the receipt/error
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $order = $_POST["order"];
     $qty = $_POST["qty"];
     $cash = $_POST["cash"];
 
-    // Menu prices (Expanded)
+    
     $prices = [
         "Burger" => 50,
         "Fries" => 75,
@@ -219,7 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "Pizza Slice" => 90
     ];
 
-    // Basic validation to ensure item and quantity are valid
+    
     if (!isset($prices[$order]) || $qty <= 0) {
         echo "<div class='error-message'>&#x26A0; Invalid order or quantity. Please check your selection.</div>";
     } else {
@@ -250,4 +250,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 </body>
+
 </html>
