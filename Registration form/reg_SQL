@@ -1,0 +1,11 @@
+CREATE TABLE accounts_tb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(100) NOT NULL,
+    lastName VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phoneNumber VARCHAR(20) NOT NULL,
+    newPassword VARCHAR(255) NOT NULL,
+    confirmPassword VARCHAR(255) NOT NULL,
+    dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
