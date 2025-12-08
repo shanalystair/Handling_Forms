@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Ensure ID is provided and numeric
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: read.php");
     exit();
@@ -9,22 +8,18 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// 1. Fetch current record data
 $sql = "SELECT * FROM accounts_tb WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Redirect if account not found
 if (!$row) {
     header("Location: read.php");
     exit();
 }
 
-// 2. Handle Update request
 if (isset($_POST['update'])) {
 
-    // Sanitize and retrieve POST data
     $firstName = htmlspecialchars(trim($_POST['firstName']));
     $lastName = htmlspecialchars(trim($_POST['lastName']));
     $username = htmlspecialchars(trim($_POST['username']));
@@ -33,18 +28,14 @@ if (isset($_POST['update'])) {
     $newPassword = $_POST['newPassword'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Validate password match
     if ($newPassword !== $confirmPassword) {
-        // Use a query parameter for better error display
+        
         header("Location: update.php?id=" . $id . "&alert=Passwords+do+not+match!");
         exit();
     }
 
-    // Hash password
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    // NOTE: This SQL still includes the redundant 'confirmPassword' field
-    // to exactly match the logic of your original script.
     $update = "UPDATE accounts_tb 
                SET firstName=?, lastName=?, username=?, email=?, phoneNumber=?, newPassword=?, confirmPassword=? 
                WHERE id=?";
@@ -56,7 +47,7 @@ if (isset($_POST['update'])) {
         header("Location: read.php?success=Account+updated+successfully");
         exit();
     } catch (PDOException $e) {
-        // Handle database error
+        
         header("Location: update.php?id=" . $id . "&alert=Database+error:+Could+not+update+account.");
         exit();
     }
@@ -76,8 +67,7 @@ if (isset($_POST['update'])) {
             margin-top: 50px;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
     </style>
 </head>
 <body>
@@ -137,4 +127,5 @@ if (isset($_POST['update'])) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>
