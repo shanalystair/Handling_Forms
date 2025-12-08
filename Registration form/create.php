@@ -11,18 +11,14 @@ if (isset($_POST['save'])) {
     $newPassword = $_POST['newPassword'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Check if passwords match
     if ($newPassword !== $confirmPassword) {
-        // Changed to use a query parameter for better alert styling with Bootstrap
+    
         header("Location: create.php?alert=Passwords+do+not+match!");
         exit();
     }
 
-    // Hash password
     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-    // NOTE: This SQL still includes the redundant 'confirmPassword' field
-    // to exactly match the logic of your original script.
     $sql = "INSERT INTO accounts_tb (firstName, lastName, username, email, phoneNumber, newPassword, confirmPassword)
             VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -106,4 +102,3 @@ if (isset($_POST['save'])) {
         <a href="read.php" class="btn btn-secondary mt-2 w-100">Cancel / View List</a>
     </form>
 </div>
-
